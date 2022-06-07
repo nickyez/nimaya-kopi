@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.beranda');
 });
+Route::get('/course', function () {
+    return view('pages.course');
+});
+Route::get('/article', function () {
+    return view('pages.article');
+});
