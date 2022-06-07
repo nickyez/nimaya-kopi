@@ -81,22 +81,26 @@
     <section id="artikel" class="py-5 container">
         <h1 class="text-center">Artikel</h1>
         <div class="row justify-content-between mt-5">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card-artikel">
                     <img src="{{asset('img/img_artikel1.png')}}" alt="" class="img-fluid">
-                    <h3 class="text-center">Inovasi Baru</h3>
+                    <h3 class="text-center mt-3">Inovasi Baru</h3>
                     <p> Sit neque ipsum tempor, nam scelerisque quisque nulla. Sag Sagittis et, egestas mauris sa congue sed massa elit id eles eleifend. Auctor vitae vinako venenatis </p>
                 </div>
             </div>
-            <div class="col-md-3">
-                <img src="{{asset('img/img_artikel2.png')}}" alt="" class="img-fluid">
-                <h3 class="text-center">Pengolahan</h3>
-                <p> Sit neque ipsum tempor, nam scelerisque quisque nulla. Sag Sagittis et, egestas mauris sa congue sed massa elit id eles eleifend. Auctor vitae vinako venenatis </p>
+            <div class="col-md-4">
+                <div class="card-artikel">
+                    <img src="{{asset('img/img_artikel2.png')}}" alt="" class="img-fluid">
+                    <h3 class="text-center mt-3">Pengolahan</h3>
+                    <p> Sit neque ipsum tempor, nam scelerisque quisque nulla. Sag Sagittis et, egestas mauris sa congue sed massa elit id eles eleifend. Auctor vitae vinako venenatis </p>
+                </div>
             </div>
-            <div class="col-md-3">
-                <img src="{{asset('img/img_artikel3.png')}}" alt="" class="img-fluid">
-                <h3 class="text-center">Minat</h3>
-                <p> Sit neque ipsum tempor, nam scelerisque quisque nulla. Sag Sagittis et, egestas mauris sa congue sed massa elit id eles eleifend. Auctor vitae vinako venenatis </p>
+            <div class="col-md-4">
+                <div class="card-artikel">
+                    <img src="{{asset('img/img_artikel3.png')}}" alt="" class="img-fluid">
+                    <h3 class="text-center mt-3">Minat</h3>
+                    <p> Sit neque ipsum tempor, nam scelerisque quisque nulla. Sag Sagittis et, egestas mauris sa congue sed massa elit id eles eleifend. Auctor vitae vinako venenatis </p>
+                </div>
             </div>
         </div>
         <div class="d-flex flex-row-reverse mt-5">
