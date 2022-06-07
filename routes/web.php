@@ -22,3 +22,6 @@ Route::get('/course', function () {
 Route::get('/article', function () {
     return view('pages.article');
 });
+Route::get('/faq', function () {
+    return view('pages.faq');
+});
