@@ -18,6 +18,13 @@ footer{
     background-size: cover;
 }
 
+#course h2{
+    font-weight: 700;
+}
+#course p{
+    line-height: 40px;
+}
+
 .custom-card{
     padding: 35px 40px;
     border-radius: 10px;
@@ -45,6 +52,13 @@ footer{
     line-height: 20px;
     letter-spacing: 0.2px;
     color: #737373;
+}
+
+.card-artikel{
+    padding: 25px;
+    background: #FFFFFF;
+    box-shadow: 6px 10px 20px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
 }
 
 .header-text{
