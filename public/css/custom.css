@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 *{
     font-family: 'Inter', sans-serif;
@@ -23,6 +22,10 @@ footer{
 }
 #course p{
     line-height: 40px;
+}
+
+.bg-app-primary{
+    background-color: #222;
 }
 
 .custom-card{
@@ -54,6 +57,16 @@ footer{
     color: #737373;
 }
 
+.custom-form-login{
+    box-sizing:border-box;
+    height:50px;
+    color: #FFFFFF;
+    border-radius: 100px;
+    border: 1px solid #FFFFFF;
+    background-color:#222;
+    padding: 0 16px;
+}
+
 .card-artikel{
     padding: 25px;
     background: #FFFFFF;
@@ -61,9 +74,6 @@ footer{
     border-radius: 10px;
 }
 
-.header-text{
-    font-family: 'Roboto', sans-serif;
-}
 .header-text > h1{
     font-size: 64px;
     font-weight: 900;
