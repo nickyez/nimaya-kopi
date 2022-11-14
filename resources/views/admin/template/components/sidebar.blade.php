@@ -10,7 +10,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{url('/admin')}}">
+        <a class="nav-link" href="{{ url('/admin') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Profil</span></a>
     </li>
@@ -25,19 +25,24 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{url('/admin/article')}}">
+        <a class="nav-link" href="{{ url('/admin/article') }}">
             <i class="fas fa-newspaper"></i>
             <span>Artikel</span></a>
     </li>
 
     <li class="nav-item active">
-        <a class="nav-link" href="{{url('/admin/course')}}">
+        <a class="nav-link" href="{{ url('/admin/course') }}">
             <i class="fas fa-book"></i>
             <span>Kursus</span></a>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ url('/admin/class') }}">
+            <i class="fas fa-book"></i>
+            <span>Kelas</span></a>
+    </li>
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{url('/admin/faq')}}">
+        <a class="nav-link" href="{{ url('/admin/faq') }}">
             <i class="fas fa-question-circle"></i>
             <span>FAQ</span></a>
     </li>

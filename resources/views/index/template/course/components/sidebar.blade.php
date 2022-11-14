@@ -8,32 +8,16 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
+    @foreach ($class as $item)
+        <li class="nav-item @if ($item->id == $class_item->id) active @endif">
+            <a class="nav-link" href="{{ url('/course/detail') . '/' . $item->course_id . '/' . $item->nama_kelas }}">
+                <i class="fas fa-circle"></i>
+                <span>{{ $item->nama_kelas }}</span></a>
+        </li>
+    @endforeach
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item active">
-        <a class="nav-link" href="#">
-            <i class="fas fa-newspaper"></i>
-            <span>Natural Process</span></a>
-    </li>
 
-    <li class="nav-item active">
-        <a class="nav-link" href="#">
-            <i class="fas fa-book"></i>
-            <span>Full Wash</span></a>
-    </li>
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item active">
-        <a class="nav-link" href="#">
-            <i class="fas fa-question-circle"></i>
-            <span>Semi Wash</span></a>
-    </li>
-
-    <li class="nav-item active">
-        <a class="nav-link" href="#">
-            <i class="fas fa-question-circle"></i>
-            <span>Honey</span></a>
-    </li>
-    
-    <a href="{{url('/course')}}" class="mx-3 my-3 btn btn-light">Kembali ke Halaman Utama</a>
+    <a href="{{ url('/course') }}" class="mx-3 my-3 btn btn-light">Kembali ke Halaman Utama</a>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

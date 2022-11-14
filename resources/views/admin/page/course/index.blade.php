@@ -43,7 +43,7 @@
                     @foreach ($courses as $item)
                         <tr>
                             <td style="width:15%">{{ $item->nama_kursus }}</td>
-                            <td style="width:25%">{!! $item->deskripsi !!}</td>
+                            <td style="width:25%">{!! Str::words($item->deskripsi, 10, ' ...') !!}</td>
                             <td style="width:20%">
                                 <div class="d-flex flex-row justify-content-center">
                                     <a href="{{ Request::url() . '/' . $item->id . '/edit' }}"

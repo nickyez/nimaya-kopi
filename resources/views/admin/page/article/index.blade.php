@@ -5,7 +5,7 @@
 @section('header-name', 'Kelola Artikel')
 
 @push('custom-style')
-    <link href="{{ asset('package/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -31,20 +31,19 @@
                 </div>
             @endif
             <div class="table-responsive">
-                <table class="table table-bordered" id="faq" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="article" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Judul</th>
                             <th>Slug</th>
-                            <th>Deskripsi</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($faqs as $item)
+                        @foreach ($article as $item)
                             <tr>
-                                <td style="width:15%">{{ $item->pertanyaan }}</td>
-                                <td style="width:25%">{{ $item->jawaban }}</td>
+                                <td style="width:15%">{{ $item->judul }}</td>
+                                <td style="width:25%">{{ $item->slug }}</td>
                                 <td style="width:20%">
                                     <div class="d-flex flex-row justify-content-center">
                                         <a href="{{ Request::url() . '/' . $item->id . '/edit' }}"
@@ -75,7 +74,9 @@
 @push('page-script')
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    
+    <script>
+        $(document).ready(function() {
+            $('#article').DataTable();
+        });
+    </script>
 @endpush
-
-

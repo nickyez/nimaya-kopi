@@ -2,22 +2,22 @@
 
 @section('title', 'Admin | Nimaya Kopi')
 
-@section('header-name','Kelola FAQ')
+@section('header-name','Kelola Kelas')
 
 @push('custom-style')
-    <link href="{{ asset('package/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <div class="d-sm-flex align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Data FAQ</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Data Kelas</h6>
             <a href="{{ Request::url() . '/create' }}" class="btn btn-primary btn-icon-split btn-sm">
                 <span class="icon text-white-50">
                     <i class="fas fa-arrow-left"></i>
                 </span>
-                <span class="text">Tambah FAQ</span>
+                <span class="text">Tambah Kelas</span>
             </a>
         </div>
     </div>
@@ -31,7 +31,7 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="class" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Kategori Kursus</th>
@@ -42,7 +42,7 @@
                 <tbody>
                     @foreach ($course_class as $item)
                         <tr>
-                            <td style="width:15%">{{ $item->course_id }}</td>
+                            <td style="width:15%">{{ $item->course->nama_kursus }}</td>
                             <td style="width:25%">{{ $item->nama_kelas }}</td>
                             <td style="width:20%">
                                 <div class="d-flex flex-row justify-content-center">
@@ -72,10 +72,11 @@
 @endsection
 
 @push('page-script')
-    <script src="{{ asset('package/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('package/datatables/dataTables.bootstrap4.min.js') }}"></script>
-@endpush
-
-@push('data-script')
-    <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#class').DataTable();
+        });
+    </script>
 @endpush

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CourseClass;
+use App\Models\Course;
 
 class LandingPageController extends Controller
 {
@@ -16,11 +18,17 @@ class LandingPageController extends Controller
     }
     public function course()
     {
-        return view('index.page.course.index');
+        $course = Course::all();
+        return view('index.page.course.index',compact('course'));
     }
-    public function courseDetail()
+    public function courseDetail($id,$nama_kelas = "")
     {
-        return view('index.page.course.detail');
+        $class = CourseClass::where('course_id',$id)->get();
+        $class_item = CourseClass::where('nama_kelas',$class[0]->nama_kelas)->first();
+        if(!empty($nama_kelas)){
+            $class_item = CourseClass::where('nama_kelas',$nama_kelas)->first();
+        }
+        return view('index.page.course.detail',compact('class','id','class_item'));
     }
     public function faq()
     {
