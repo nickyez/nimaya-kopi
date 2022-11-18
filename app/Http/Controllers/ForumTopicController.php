@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PostCategoryController extends Controller
+class ForumTopicController extends Controller
 {
     //
 }

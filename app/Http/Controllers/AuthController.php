@@ -16,9 +16,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if(Auth::attempt($request->only('email', 'password'))){
+            if(Auth::user()->is_admin != 1){
+                Auth::logout();
+                return redirect()->route('login')->with('status','Hanya Admin yang dapat masuk');
+            }
             return redirect('/admin');
         }
-        return redirect()->route('login')->with('status','Username dan Password salah');
+        return redirect()->route('login')->with('status','Email dan Password salah');
     }
 
     public function logout()

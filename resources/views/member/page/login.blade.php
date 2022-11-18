@@ -24,7 +24,8 @@
                 <div class="d-flex flex-grow-1 flex-column align-items-start justify-content-center ">
                     <h2>Sign In User</h2>
                     <span>Silahkan masuk ke dalam forum kami</span>
-                    <form method="post" action="#" class="w-100 mt-5">
+                    <form method="post" action="{{Request::url() . '/auth'}}" class="w-100 mt-5">
+                        @csrf
                         <div class="form-group">
                             <label for="email" class="font-weight-bold">Email</label>
                             <input id="email" class="form-control rounded-pill" type="text" name="email"

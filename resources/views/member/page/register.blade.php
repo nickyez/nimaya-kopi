@@ -24,7 +24,8 @@
                 <div class="d-flex flex-grow-1 flex-column align-items-start justify-content-center ">
                     <h2>Sign Up User</h2>
                     <span>Silahkan daftar ke dalam forum kami</span>
-                    <form method="post" action="#" class="w-100 mt-5">
+                    <form method="post" action="{{Request::url().'/auth'}}" class="w-100 mt-5" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group">
                             <label for="name" class="font-weight-bold">Nama</label>
                             <input id="name" class="form-control rounded-pill" type="text" name="name"
@@ -45,7 +46,7 @@
                             <div class="input-group mb-3 rounded-pill">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                        aria-describedby="inputGroupFileAddon01" name="foto">
+                                        aria-describedby="inputGroupFileAddon01" name="photo">
                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                 </div>
                             </div>

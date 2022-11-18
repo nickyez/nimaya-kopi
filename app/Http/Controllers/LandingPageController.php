@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CourseClass;
+use App\Models\Article;
 use App\Models\Course;
+use App\Models\CourseClass;
 
 class LandingPageController extends Controller
 {
@@ -14,7 +15,8 @@ class LandingPageController extends Controller
     }
     public function article()
     {
-        return view('index.page.article');
+        $article = Article::all();
+        return view('index.page.article',compact('article'));
     }
     public function course()
     {
@@ -33,5 +35,9 @@ class LandingPageController extends Controller
     public function faq()
     {
         return view('index.page.faq');
+    }
+    public function forum()
+    {
+        return view('index.page.forum');
     }
 }
