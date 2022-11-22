@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+use App\Models\ForumTopic;
+
+class ForumTopicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $topics = ForumTopic::all();
+        return view('admin.page.forum_topic.index',compact('topics'));
     }
 
     /**
@@ -23,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.page.forum_topic.create');
     }
 
     /**
@@ -34,7 +38,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $topic = new ForumTopic;
+        $topic->nama_topik = $request->nama_topik;
+        $topic->save();
+        return redirect('/admin/forum-topic')->with('status','Topik berhasil ditambahkan');
     }
 
     /**
@@ -51,12 +58,13 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ForumTopic $topic
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $topic = ForumTopic::find($id);
+        return view('admin.page.forum_topic.edit',compact('topic'));
     }
 
     /**
@@ -68,7 +76,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $topic = ForumTopic::find($id);
+        $topic->nama_topik = $request->nama_topik;
+        $topic->save();
+        return redirect('/admin/forum-topic')->with('status','Topik berhasil Diubah');
     }
 
     /**
@@ -79,6 +90,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $topic = ForumTopic::find($id);
+        $topic->delete();
+        return redirect('/admin/forum-topic')->with('status','Topik berhasil Dihapus');
     }
 }

@@ -31,10 +31,14 @@ Route::get('/forum', [LandingPageController::class,'forum']);
 | Route untuk Role Member
 |--------------------------------------------------------------------------
 */
-Route::get('/member/login', [Member\MemberController::class,'login'])->name('memberLogin');
-Route::get('/member/register', [Member\MemberController::class,'register']);
-Route::post('/member/login/auth',[Member\MemberController::class,'authLogin']);
-Route::post('/member/register/auth',[Member\MemberController::class,'postRegister']);
+Route::group(['prefix'=>'member'],function(){
+    Route::get('/login', [Member\MemberController::class,'login'])->name('memberLogin');
+    Route::get('/register', [Member\MemberController::class,'register']);
+    Route::post('/login/auth',[Member\MemberController::class,'authLogin']);
+    Route::post('/register/auth',[Member\MemberController::class,'postRegister']);
+    Route::post('/logout',[Member\MemberController::class,'logout']);
+});
+Route::post('/forum/create',[ForumController::class,'store']);
 Route::group(['middleware'=>'member','prefix'=>'course'],function(){
     Route::get('/detail/{id}', [LandingPageController::class,'courseDetail']);
     Route::get('/detail/{id}/{nama_kelas}', [LandingPageController::class,'courseDetail']);
@@ -53,5 +57,8 @@ Route::group(['middleware'=>'auth','prefix'=>'admin'], function(){
     Route::resource('/article', Admin\ArticleController::class);
     Route::resource('/course', Admin\CourseController::class);
     Route::resource('/class', Admin\CourseClassController::class);
+    Route::resource('/forum-topic', Admin\ForumTopicController::class);
+    Route::resource('/user', Admin\UserController::class);
+    Route::resource('/socmed', Admin\SocmedController::class)->only(['index','update','edit']);
     Route::post('/class/store-image',[Admin\CourseClassController::class, 'storeImage'])->name('image.upload');
 });

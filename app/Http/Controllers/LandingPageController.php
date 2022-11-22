@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Course;
 use App\Models\CourseClass;
+use App\Models\ForumTopic;
+use App\Models\Forum;
+use Auth;
 
 class LandingPageController extends Controller
 {
@@ -36,8 +39,20 @@ class LandingPageController extends Controller
     {
         return view('index.page.faq');
     }
-    public function forum()
+    public function forum(Request $request)
     {
-        return view('index.page.forum');
+        $topic = ForumTopic::all();
+        $forum = Forum::all();
+        if ($request->has('post')){
+            $forum = Forum::where('user_id',Auth::user()->id)->get();
+        }
+        if($request->has('topik')){
+            $getIdTopik = ForumTopic::where('nama_topik',$request->input('topik'))->first()->id;
+            $forum = Forum::where('topic_id',$getIdTopik)->get();
+        }
+        if ($request->has('post') && $request->has('topik')){
+            $forum = Forum::where(['topic_id'=>$getIdTopik,'user_id'=>Auth::user()->id])->get();
+        }
+        return view('index.page.forum',compact('topic','forum'));
     }
 }

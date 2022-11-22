@@ -39,4 +39,10 @@ class MemberController extends Controller
         $user->save();
         return redirect()->route('memberLogin')->with('status','Register Berhasil, Silahkan Login');
     }
+    public function logout()
+    {
+        Auth::logout();
+        session()->flush();
+        return redirect('/login');
+    }
 }

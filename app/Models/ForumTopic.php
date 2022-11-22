@@ -14,4 +14,10 @@ class ForumTopic extends Model
      * @var bool
      */
     public $timestamps = false;
+    protected $table = 'forum_topics';
+
+    public function forum()
+    {
+        return $this->hasMany(Forum::class,'topic_id');
+    }
 }

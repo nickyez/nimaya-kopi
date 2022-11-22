@@ -15,7 +15,8 @@ class SocmedController extends Controller
      */
     public function index()
     {
-        //
+        $socmeds = Socmed::all();
+        return view('admin.page.sosmed.index',compact('socmeds'));
     }
 
     /**
@@ -58,7 +59,7 @@ class SocmedController extends Controller
      */
     public function edit(Socmed $socmed)
     {
-        //
+        return view('admin.page.sosmed.edit',compact('socmed'));
     }
 
     /**

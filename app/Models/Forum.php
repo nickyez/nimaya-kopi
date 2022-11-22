@@ -17,4 +17,12 @@ class Forum extends Model
     {
         return $this->belongsTo(ForumTopic::class, 'topic_id', 'id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function liked()
+    {
+        return $this->hasMany(ForumLiked::class,'forum_id');
+    }
 }
