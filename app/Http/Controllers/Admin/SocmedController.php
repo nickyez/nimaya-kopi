@@ -71,7 +71,9 @@ class SocmedController extends Controller
      */
     public function update(Request $request, Socmed $socmed)
     {
-        //
+        $socmed->url = $request->url;
+        $socmed->save();
+        return redirect('/admin/socmed')->with('status','Sosmed berhasil diubah'); 
     }
 
     /**

@@ -27,7 +27,7 @@ class Authenticate extends Middleware
      * @param \Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, ...$guards)
     {
         if (Auth::check() && Auth::user()->is_admin == 1) {
             return $next($request);

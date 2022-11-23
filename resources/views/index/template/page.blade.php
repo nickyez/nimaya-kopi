@@ -78,9 +78,9 @@
                     <p>Jl. Lowokwaru Malang</p>
                     <p>coffee@example.com</p>
                     <div class="d-flex justify-content-start">
-                        <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></i></a>
-                        <a href="#" class="text-white mx-2"><i class="fab fa-facebook"></i></i></a>
-                        <a href="#" class="text-white mx-2"><i class="fab fa-google"></i></a>
+                        <a href="{{$instagram->url ?? '#'}}" class="text-white mx-2"><i class="fab fa-instagram"></i></i></a>
+                        <a href="{{$facebook->url ?? '#'}}" class="text-white mx-2"><i class="fab fa-facebook"></i></i></a>
+                        <a href="{{$gmail->url ?? '#'}}" class="text-white mx-2"><i class="fab fa-google"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-lg-2 offset-lg-1 mb-3 footer-menu">
@@ -116,7 +116,9 @@
         </div>
     </footer>
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
     @stack('script')
 </body>
 

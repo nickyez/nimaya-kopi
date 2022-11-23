@@ -55,9 +55,9 @@
                     <div class="row mt-3 mx-3">
                         <div class="card w-100">
                             <div class="card-body">
-                                <div class="d-flex">
-                                    <img src="{{ asset('storage'.'/'.$item->user->photo) }}" alt="" width="96px"
-                                        height="96px" class="rounded-circle mr-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ asset('storage' . '/' . $item->user->photo) }}" alt=""
+                                        width="96px" height="96px" class="rounded-circle mr-4">
                                     <div class="d-flex flex-column flex-fill">
                                         <span><strong>{{ $item->user->name }}</strong> /
                                             {{ $item->forumTopic->nama_topik }}</span>
@@ -67,8 +67,21 @@
                                             <span>{{ count($item->liked) }}</span>
                                         </div>
                                     </div>
-                                    <img src="{{ asset('storage' . '/' . $item->gambar) }}" alt="" width="111px"
-                                        height="111px" class="rounded">
+                                    <div class="d-flex flex-column justify-content-end">
+                                        @if (Auth::check() && Auth::user()->is_admin == 0)
+                                            <div class="dropdown w-100 text-right">
+                                                <a href="" class="text-dark" style="font-size: 1.5em"
+                                                    data-toggle="dropdown" aria-expanded="false"><i
+                                                        class="fas fa-ellipsis-h"></i></a>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                    <a class="dropdown-item" href="#">Hapus</a>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <img src="{{ asset('storage' . '/' . $item->gambar) }}" alt=""
+                                            width="111px" height="111px" class="rounded">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -82,51 +95,52 @@
 
         </div>
     </section>
-    @if(Auth::check() && Auth::user()->is_admin == 0)
-    <div class="modal fade" id="add-post" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <form action="{{ url('/forum/create') }}" method="post" enctype="multipart/form-data">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Buat Post</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        @csrf
-                        <input type="hidden" name="user" value="{{ Auth::user()->id }}">
-                        <div class="form-group">
-                            <label for="file">Gambar</label>
-                            <input type="file" class="form-control-file" id="file" name="gambar">
+    @if (Auth::check() && Auth::user()->is_admin == 0)
+        <div class="modal fade" id="add-post" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <form action="{{ url('/forum/create') }}" method="post" enctype="multipart/form-data">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Buat Post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
+                        <div class="modal-body">
+                            @csrf
+                            <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                            <div class="form-group">
+                                <label for="file">Gambar</label>
+                                <input type="file" class="form-control-file" id="file" name="gambar">
+                            </div>
 
-                        <div class="form-group">
-                            <label for="topik_forum">Pilih Kategori</label>
-                            <select class="form-control" id="topik_forum" name="topik_forum">
-                                @foreach ($topic as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama_topik }}</option>
-                                @endforeach
-                            </select>
+                            <div class="form-group">
+                                <label for="topik_forum">Pilih Kategori</label>
+                                <select class="form-control" id="topik_forum" name="topik_forum">
+                                    @foreach ($topic as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama_topik }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="judul">Judul</label>
+                                <input type="text" class="form-control" id="judul" name="judul">
+                            </div>
+                            <div class="form-group">
+                                <label for="tulisan">Masukkan Tulisan</label>
+                                <textarea class="form-control" id="tulisan" name="tulisan" rows="3"></textarea>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="judul">Judul</label>
-                            <input type="text" class="form-control" id="judul" name="judul">
-                        </div>
-                        <div class="form-group">
-                            <label for="tulisan">Masukkan Tulisan</label>
-                            <textarea class="form-control" id="tulisan" name="tulisan" rows="3"></textarea>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary"><i
+                                    class="fas fa-save mr-2"></i>Tambah</button>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Tambah</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
     @endif
 
 @endsection

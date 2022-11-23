@@ -8,10 +8,16 @@ use App\Models\Course;
 use App\Models\CourseClass;
 use App\Models\ForumTopic;
 use App\Models\Forum;
+use App\Models\Socmed;
 use Auth;
 
 class LandingPageController extends Controller
 {
+    function __construct(){
+        $instagram = Socmed::where('platform','Instagram')->first();
+        $facebook = Socmed::where('platform','Facebook')->first();
+        $gmail = Socmed::where('platform','Gmail')->first();
+    }
     public function index()
     {
         $article = Article::limit(3)->get();

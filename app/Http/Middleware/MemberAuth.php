@@ -5,8 +5,9 @@ namespace App\Http\Middleware;
 use Auth;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
-class MemberAuth
+class MemberAuth extends Middleware
 {
     /**
      * Handle a incoming request.
@@ -15,7 +16,7 @@ class MemberAuth
      * @param \Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, ...$guards)
     {
         if (Auth::check() && Auth::user()->is_admin == 0) {
             return $next($request);

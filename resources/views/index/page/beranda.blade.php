@@ -15,7 +15,7 @@
                     <p>Selalu memiliki banyak arti</p>
                 </div>
                 <div class="header-btn">
-                    <a href="#" class="btn btn-light">Jelajahi</a>
+                    <a href="{{url('/course')}}" class="btn btn-light">Jelajahi</a>
                 </div>
             </div>
         </div>
@@ -91,15 +91,15 @@
     <section id="course" class="py-5 container">
         <div class="row">
             <div class="col-md-4">
-                <img src="{{ asset('storage'.'/'.$course->gambar) }}" alt="" class="img-fluid">
+                <img src="{{ asset('storage' . '/' . $course->gambar) }}" alt="" class="img-fluid">
             </div>
             <div class="col-md-8">
                 <div class="px-5">
-                    <h2>{{$course->nama_kursus}}</h2>
+                    <h2>{{ $course->nama_kursus }}</h2>
                     {!! $course->deskripsi !!}
                     <div class="d-flex flex-row">
-                        <a href="#" class="btn btn-dark mr-3">Bergabung</a>
-                        <a href="#" class="btn btn-outline-dark">Info Lanjut</a>
+                        <a href="{{ url('/course/detail') . '/' . $course->id }}" class="btn btn-dark mr-3">Bergabung</a>
+                        <a href="{{ url('/course') }}" class="btn btn-outline-dark">Info Lanjut</a>
                     </div>
                 </div>
             </div>

@@ -43,6 +43,6 @@ class MemberController extends Controller
     {
         Auth::logout();
         session()->flush();
-        return redirect('/login');
+        return redirect()->route('memberLogin');
     }
 }
