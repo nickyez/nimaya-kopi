@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Auth;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class MemberAuth extends Middleware
 {

@@ -14,7 +14,9 @@ class LandingPageController extends Controller
 {
     public function index()
     {
-        return view('index.page.beranda');
+        $article = Article::limit(3)->get();
+        $course = Course::limit(1)->first();
+        return view('index.page.beranda',compact('article','course'));
     }
     public function article()
     {

@@ -15,7 +15,7 @@
     <div class="row vh-100">
         <div class="col-6">
             <div class="container d-flex flex-column px-5 h-100">
-                <a href="#" class="text-decoration-none" style="margin-top: 50px">
+                <a href="{{URL::previous()}}" class="text-decoration-none" style="margin-top: 50px">
                     <div class="btn btn-dark mx-3">
                         <i class="fas fa-chevron-left"></i>
                     </div>

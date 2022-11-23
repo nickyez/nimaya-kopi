@@ -82,6 +82,7 @@
 
         </div>
     </section>
+    @if(Auth::check() && Auth::user()->is_admin == 0)
     <div class="modal fade" id="add-post" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -126,6 +127,7 @@
             </form>
         </div>
     </div>
+    @endif
 
 @endsection
 

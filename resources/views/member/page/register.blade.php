@@ -15,7 +15,7 @@
     <div class="row vh-100">
         <div class="col-md-6 col-12  py-5">
             <div class="container d-flex flex-column px-5 h-100">
-                <a href="#" class="text-decoration-none my-4">
+                <a href="{{URL::previous()}}" class="text-decoration-none my-4">
                     <div class="btn btn-dark mx-3">
                         <i class="fas fa-chevron-left"></i>
                     </div>
