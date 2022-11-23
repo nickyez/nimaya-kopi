@@ -13,7 +13,7 @@ use Auth;
 
 class LandingPageController extends Controller
 {
-    function __construct(){
+    public function __construct(){
         $instagram = Socmed::where('platform','Instagram')->first();
         $facebook = Socmed::where('platform','Facebook')->first();
         $gmail = Socmed::where('platform','Gmail')->first();

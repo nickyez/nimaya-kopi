@@ -112,12 +112,12 @@
                             <input type="hidden" name="user" value="{{ Auth::user()->id }}">
                             <div class="form-group">
                                 <label for="file">Gambar</label>
-                                <input type="file" class="form-control-file" id="file" name="gambar">
+                                <input type="file" class="form-control-file" id="file" name="gambar" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="topik_forum">Pilih Kategori</label>
-                                <select class="form-control" id="topik_forum" name="topik_forum">
+                                <select class="form-control" id="topik_forum" name="topik_forum" required>
                                     @foreach ($topic as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama_topik }}</option>
                                     @endforeach
@@ -125,11 +125,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="judul">Judul</label>
-                                <input type="text" class="form-control" id="judul" name="judul">
+                                <input type="text" class="form-control" id="judul" name="judul" required>
                             </div>
                             <div class="form-group">
                                 <label for="tulisan">Masukkan Tulisan</label>
-                                <textarea class="form-control" id="tulisan" name="tulisan" rows="3"></textarea>
+                                <textarea class="form-control" id="tulisan" name="tulisan" rows="3" required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
