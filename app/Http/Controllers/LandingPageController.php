@@ -13,11 +13,6 @@ use Auth;
 
 class LandingPageController extends Controller
 {
-    public function __construct(){
-        $instagram = Socmed::where('platform','Instagram')->first();
-        $facebook = Socmed::where('platform','Facebook')->first();
-        $gmail = Socmed::where('platform','Gmail')->first();
-    }
     public function index()
     {
         $article = Article::limit(3)->get();

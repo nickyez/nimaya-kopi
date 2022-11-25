@@ -36,11 +36,12 @@
                                     class="nav-link dropdown-toggle border rounded-circle ">
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal">Logout</a>
+                                        data-target="#logoutModal">Logout</a>
                                 </div>
                             </li>
                         @else
-                            <a class="nav-link mx-4 btn btn-dark text-light" href="{{url('/member/login')}}" tabindex="-1" aria-disabled="true">Login</a>
+                            <a class="nav-link mx-4 btn btn-dark text-light" href="{{ url('/member/login') }}"
+                                tabindex="-1" aria-disabled="true">Login</a>
                         @endif
                     </div>
                 </div>
@@ -78,16 +79,19 @@
                     <p>Jl. Lowokwaru Malang</p>
                     <p>coffee@example.com</p>
                     <div class="d-flex justify-content-start">
-                        <a href="{{$instagram->url ?? '#'}}" class="text-white mx-2"><i class="fab fa-instagram"></i></i></a>
-                        <a href="{{$facebook->url ?? '#'}}" class="text-white mx-2"><i class="fab fa-facebook"></i></i></a>
-                        <a href="{{$gmail->url ?? '#'}}" class="text-white mx-2"><i class="fab fa-google"></i></a>
+                        <a href="{{ config('socmed.instagram')->url }}" class="text-white mx-2"><i
+                                class="fab fa-instagram"></i></i></a>
+                        <a href="{{ config('socmed.facebook')->url }}" class="text-white mx-2"><i
+                                class="fab fa-facebook"></i></i></a>
+                        <a href="{{ config('socmed.gmail')->url }}" class="text-white mx-2"><i
+                                class="fab fa-google"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-lg-2 offset-lg-1 mb-3 footer-menu">
                     <h5>Company</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">About</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Contact</a></li>
+                        <li class="mb-2"><a href="{{url('/#aboutus')}}" class="text-light text-decoration-none">About</a></li>
+                        {{-- <li class="mb-2"><a href="#" class="text-light text-decoration-none">Contact</a></li> --}}
                         <li class="mb-2"><a href="{{ url('/faq') }}"
                                 class="text-light text-decoration-none">FAQ</a></li>
                     </ul>
@@ -95,20 +99,23 @@
                 <div class="col-6 col-lg-2 offset-lg-1 mb-3 footer-menu">
                     <h5>Our Class</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Begineer
-                                Class</a>
-                        </li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Intermediate
+                        @foreach (config('course') as $item)
+                            <li class="mb-2"><a href="{{ url('/course/detail/' . $item->id) }}"
+                                    class="text-light text-decoration-none">{{ $item->nama_kursus }}</a>
+                            </li>
+                        @endforeach
+                        {{-- <li class="mb-2"><a href="#" class="text-light text-decoration-none">Intermediate
                                 Class</a></li>
                         <li class="mb-2"><a href="#" class="text-light text-decoration-none">Expert Class</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <div class="col-6 col-lg-2 offset-lg-1 mb-3 footer-menu">
                     <h5>Information</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Artikel</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Pengajar</a>
+                        <li class="mb-2"><a href="{{ url('/article') }}"
+                                class="text-light text-decoration-none">Artikel</a></li>
+                        {{-- <li class="mb-2"><a href="#" class="text-light text-decoration-none">Pengajar</a> --}}
                         </li>
                     </ul>
                 </div>
@@ -116,7 +123,9 @@
         </div>
     </footer>
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
     @stack('script')

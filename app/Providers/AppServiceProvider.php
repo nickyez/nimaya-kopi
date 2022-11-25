@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Socmed;
+use App\Models\Course;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $instagram = Socmed::where('platform','Instagram')->first();
+        $facebook = Socmed::where('platform','Facebook')->first();
+        $gmail = Socmed::where('platform','Gmail')->first();
+        $course = Course::all();
+        config([
+            'socmed.instagram' => $instagram,
+            'socmed.facebook' => $facebook,
+            'socmed.gmail' => $gmail,
+            'course' => $course,
+        ]);
     }
 }
