@@ -40,6 +40,11 @@
             <i class="fas fa-chalkboard-teacher"></i>
             <span>Kelas</span></a>
     </li>
+    <li class="nav-item @if(Request::url() == url('/admin/forum')) active @endif">
+        <a class="nav-link" href="{{ url('/admin/forum') }}">
+            <i class="fas fa-people-carry"></i>
+            <span>Forum</span></a>
+    </li>
     <li class="nav-item @if(Request::url() == url('/admin/forum-topic')) active @endif">
         <a class="nav-link" href="{{ url('/admin/forum-topic') }}">
             <i class="fas fa-align-justify"></i>

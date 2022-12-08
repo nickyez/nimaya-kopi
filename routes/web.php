@@ -39,6 +39,8 @@ Route::group(['prefix'=>'member'],function(){
     Route::post('/logout',[Member\MemberController::class,'logout']);
 });
 Route::post('/forum/create',[ForumController::class,'store']);
+Route::post('/forum/edit/{id}',[ForumController::class,'update']);
+Route::delete('/forum/{id}',[ForumController::class,'destroy']);
 Route::group(['middleware'=>'member','prefix'=>'course'],function(){
     Route::get('/detail/{id}', [LandingPageController::class,'courseDetail']);
     Route::get('/detail/{id}/{nama_kelas}', [LandingPageController::class,'courseDetail']);
@@ -60,5 +62,6 @@ Route::group(['middleware'=>'auth','prefix'=>'admin'], function(){
     Route::resource('/forum-topic', Admin\ForumTopicController::class);
     Route::resource('/user', Admin\UserController::class);
     Route::resource('/socmed', Admin\SocmedController::class)->only(['index','update','edit']);
+    Route::resource('/forum', Admin\ForumController::class)->only(['index','destroy']);
     Route::post('/class/store-image',[Admin\CourseClassController::class, 'storeImage'])->name('image.upload');
 });

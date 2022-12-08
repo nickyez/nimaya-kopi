@@ -100,8 +100,11 @@
                     <h5>Our Class</h5>
                     <ul class="list-unstyled">
                         @foreach (config('course') as $item)
+                        @php
+                            $judul = explode(':',$item->nama_kursus);
+                        @endphp
                             <li class="mb-2"><a href="{{ url('/course/detail/' . $item->id) }}"
-                                    class="text-light text-decoration-none">{{ $item->nama_kursus }}</a>
+                                    class="text-light text-decoration-none">{{ $judul[0] }}</a>
                             </li>
                         @endforeach
                         {{-- <li class="mb-2"><a href="#" class="text-light text-decoration-none">Intermediate

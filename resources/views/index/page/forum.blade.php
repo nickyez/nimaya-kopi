@@ -51,6 +51,9 @@
             @endif
             {{-- Post Here --}}
             @if (count($forum))
+                @php
+                    $i = 1;
+                @endphp
                 @foreach ($forum as $item)
                     <div class="row mt-3 mx-3">
                         <div class="card w-100">
@@ -68,14 +71,22 @@
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column justify-content-end">
-                                        @if (Auth::check() && Auth::user()->is_admin == 0)
+                                        @if (Auth::check() && Auth::user()->is_admin == 0 && Request::has('post'))
                                             <div class="dropdown w-100 text-right">
                                                 <a href="" class="text-dark" style="font-size: 1.5em"
                                                     data-toggle="dropdown" aria-expanded="false"><i
                                                         class="fas fa-ellipsis-h"></i></a>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Hapus</a>
+                                                    <a class="dropdown-item" data-toggle="modal"
+                                                        data-target="#edit-post-{{ $i }}"><span class="btn">Edit</span></a>
+                                                    <form action="{{ Request::url() . '/' . $item->id }}" method="post"
+                                                        onclick="return confirm('Are you sure?')" class="dropdown-item">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn">
+                                                            <span class="text">Hapus</span>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         @endif
@@ -86,6 +97,9 @@
                             </div>
                         </div>
                     </div>
+                    @php
+                        $i++;
+                    @endphp
                 @endforeach
             @else
                 <div class="vh-100 vw-50 d-flex justify-content-center align-items-center">
@@ -97,12 +111,12 @@
     </section>
     @if (Auth::check() && Auth::user()->is_admin == 0)
         <div class="modal fade" id="add-post" data-backdrop="static" data-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            aria-labelledby="add-forum" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
-                <form action="{{ url('/forum/create') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('/forum/create') }}" method="post" enctype="multipart/form-data" class="w-100 h-100">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Buat Post</h5>
+                            <h5 class="modal-title" id="add-forum">Buat Post</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -141,6 +155,65 @@
                 </form>
             </div>
         </div>
+        @if (count($forum))
+            @php
+                $j = 1;
+            @endphp
+            @foreach ($forum as $data)
+                <div class="modal fade" id="edit-post-{{ $j }}" data-backdrop="static" data-keyboard="false"
+                    tabindex="-1" aria-labelledby="edit-forum-{{ $j }}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <form action="{{ url('/forum/edit' . '/' . $data->id) }}" method="post"
+                            enctype="multipart/form-data" class="w-100 h-100">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="edit-forum-{{ $j }}">Edit Post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    @csrf
+                                    <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                                    <div class="form-group">
+                                        <label for="file">Gambar</label>
+                                        <input type="file" class="form-control-file" id="file" name="gambar">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="topik_forum">Pilih Kategori</label>
+                                        <select class="form-control" id="topik_forum" name="topik_forum" required>
+                                            @foreach ($topic as $item)
+                                                <option value="{{ $item->id }}"
+                                                    @if ($item->id == $data->topic_id) selected @endif>
+                                                    {{ $item->nama_topik }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="judul">Judul</label>
+                                        <input type="text" class="form-control" id="judul" name="judul"
+                                            value="{{ $data->judul }}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tulisan">Masukkan Tulisan</label>
+                                        <textarea class="form-control" id="tulisan-{{ $j }}" name="tulisan" rows="3" required>{!! $data->tulisan !!}</textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary"><i
+                                            class="fas fa-edit mr-2"></i>Edit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                @php
+                    $j++;
+                @endphp
+            @endforeach
+        @endif
     @endif
 
 @endsection
@@ -159,15 +232,29 @@
             }
         })
         // Change text area into ckeditor
-        var konten = document.getElementById("tulisan");
+        var konten = document.getElementById('tulisan')
         ClassicEditor
             .create(konten, {
                 ckfinder: {
-                    uploadUrl: '{{ route('image.upload') . '?_token=' . csrf_token() }}',
+                    uploadUrl: "{{ route('image.upload') . '?_token=' . csrf_token() }}",
                 }
             })
             .catch(error => {
                 console.error(error);
             });
+        @if (count($forum))
+            @for ($k = 1; $k < count($forum); $k++)
+                var konten = document.getElementById('tulisan-{{ $k }}')
+                ClassicEditor
+                    .create(konten, {
+                        ckfinder: {
+                            uploadUrl: "{{ route('image.upload') . '?_token=' . csrf_token() }}",
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            @endfor
+        @endif
     </script>
 @endpush

@@ -74,7 +74,7 @@
                 <div class="col-md-4" data-toggle="modal" data-target="{{ '#artikel' . $i }}">
                     <div class="card-artikel">
                         <img src="{{ asset('storage') . '/' . $item->gambar }}" alt="" class="img-fluid">
-                        <h3 class="text-center mt-3">{{ $item->judul }}</h3>
+                        <h3 class="text-center mt-3">{{ $item->slug }}</h3>
                         {!! Str::words($item->deskripsi, 25, '...') !!}
                     </div>
                 </div>

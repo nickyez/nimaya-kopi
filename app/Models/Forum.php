@@ -15,7 +15,7 @@ class Forum extends Model
      */
     public function forumTopic()
     {
-        return $this->belongsTo(ForumTopic::class, 'topic_id', 'id');
+        return $this->belongsTo(ForumTopic::class, 'topic_id');
     }
     public function user()
     {
