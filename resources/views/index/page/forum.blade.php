@@ -57,7 +57,7 @@
                 @foreach ($forum as $item)
                     <div class="row mt-3 mx-3">
                         <div class="card w-100">
-                            <div class="card-body">
+                            <div class="card-body" data-toggle="modal" data-target="{{ '#forum-pop' . $i }}">
                                 <div class="d-flex align-items-center">
                                     <img src="{{ asset('storage' . '/' . $item->user->photo) }}" alt=""
                                         width="96px" height="96px" class="rounded-circle mr-4">
@@ -157,6 +157,7 @@
                 </form>
             </div>
         </div>
+
         @if (count($forum))
             @php
                 $j = 1;
@@ -217,7 +218,39 @@
             @endforeach
         @endif
     @endif
+    @php
+        $j = 1;
+    @endphp
+    @foreach ($forum as $item)
+        <!-- Modal -->
+        <div class="modal fade" id="{{ 'forum-pop' . $j }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ Str::limit($item->judul,25) }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center mb-4">
+                            <span>Ditulis Oleh : <strong>{{$item->user->name}}</strong> - Topik : <strong>{{$item->forumTopic->nama_topik}}</strong></span>
+                        </div>
+                        <div class="text-center">
+                            <img src="{{ asset('storage') . '/' . $item->gambar }}" alt="" class="w-25 mb-4">
+                        </div>
+                        <h3 class="text-center mb-2">{{ $item->judul }}</h3>
+                        {!! $item->tulisan !!}
 
+                    </div>
+                </div>
+            </div>
+        </div>
+        @php
+            $j++;
+        @endphp
+    @endforeach
 @endsection
 
 @push('script')
@@ -229,7 +262,7 @@
                 $i = 1;
             @endphp
             @foreach ($forum as $item)
-                $("#post-like-{{$i}}").click(function(e) {
+                $("#post-like-{{ $i }}").click(function(e) {
                     if ($(this).attr('class') == 'far fa-heart') {
                         $(this).removeClass()
                         $(this).addClass('fas fa-heart')
