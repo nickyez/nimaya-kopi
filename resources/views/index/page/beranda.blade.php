@@ -15,7 +15,7 @@
                     <p>Selalu memiliki banyak arti</p>
                 </div>
                 <div class="header-btn">
-                    <a href="{{url('/course')}}" class="btn btn-light">Jelajahi</a>
+                    <a href="{{ url('/course') }}" class="btn btn-light">Jelajahi</a>
                 </div>
             </div>
         </div>
@@ -27,9 +27,10 @@
             </div>
             <div class="col-md-8 p-5 mt-2">
                 <h1>Tentang Kami</h1>
-                <p>Nimaya Kopi Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, voluptatum in. Nesciunt,
-                    quaerat fugiat consequuntur, vero, corrupti veniam dolorum fugit recusandae tempore explicabo earum
-                    ullam numquam hic nam id doloribus.</p>
+                <p>Nimaya Kopi adalah sebuah brand kolektif yang berfokus pada pengolahan biji kopi menggunakan metode
+                    tradisional maupun eksperimental, Nimaya kopi juga bergerak di bidang pengembangan skill brewers yang
+                    bertujuan untuk meningkatkan skill para anggota juga masyarakat sekitar yang terbuka akan pengetahuan
+                    tentang kopi</p>
             </div>
         </div>
     </section>

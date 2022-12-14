@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Forum;
+use App\Models\ForumLiked;
 use Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -45,5 +46,19 @@ class ForumController extends Controller
         }
         $forum->delete();
         return redirect('/forum?post=my-post')->with('status','Forum berhasil Dihapus');
+    }
+    public function forumIsLiked(Request $request)
+    {
+        $forumLiked = ForumLiked::where(['forum_id'=>$request->forum_id,'user_id'=>$request->user_id])->first();
+        if (count($forumLiked)){
+            $forumLiked->delete();
+            return response()->json(['status'=>200,'message'=>'Hapus like',200]);
+        } else {
+            $forumLiked = new ForumLiked;
+            $forumLiked->forum_id = $request->forum_id;
+            $forumLiked->user_id = $request->user_id;
+            $forumLiked->save();
+            return response()->json(['status'=>200,'message'=>'Tambah like',200]);
+        }
     }
 }

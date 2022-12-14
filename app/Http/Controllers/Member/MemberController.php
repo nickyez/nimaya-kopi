@@ -24,7 +24,9 @@ class MemberController extends Controller
                 Auth::logout();
                 return redirect()->route('memberLogin')->with('status','Hanya Member yang dapat masuk');
             }
-            return redirect('/');
+            $url = $request->session()->get('urlToCourse');
+            $request->session()->forget('urlToCourse');
+            return redirect($url ?? '/');
         }
         return redirect()->route('memberLogin')->with('status','Email dan Password salah');
     }

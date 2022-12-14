@@ -66,7 +66,8 @@
                                             {{ $item->forumTopic->nama_topik }}</span>
                                         <h4 class="card-title">{{ $item->judul }}</h4>
                                         <div>
-                                            <i id='post-like' class="far fa-heart"></i>{{-- <i class="fas fa-heart"></i> --}}
+                                            <i id='post-like-{{ $i }}'
+                                                class="far fa-heart"></i>{{-- <i class="fas fa-heart"></i> --}}
                                             <span>{{ count($item->liked) }}</span>
                                         </div>
                                     </div>
@@ -78,7 +79,8 @@
                                                         class="fas fa-ellipsis-h"></i></a>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" data-toggle="modal"
-                                                        data-target="#edit-post-{{ $i }}"><span class="btn">Edit</span></a>
+                                                        data-target="#edit-post-{{ $i }}"><span
+                                                            class="btn">Edit</span></a>
                                                     <form action="{{ Request::url() . '/' . $item->id }}" method="post"
                                                         onclick="return confirm('Are you sure?')" class="dropdown-item">
                                                         @csrf
@@ -143,11 +145,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="tulisan">Masukkan Tulisan</label>
-                                <textarea class="form-control" id="tulisan" name="tulisan" rows="3" required></textarea>
+                                <textarea class="form-control" id="tulisan" name="tulisan" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-secondary" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary"><i
                                     class="fas fa-save mr-2"></i>Tambah</button>
                         </div>
@@ -222,15 +224,31 @@
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 
     <script>
-        $("#post-like").click(function() {
-            if ($(this).attr('class') == 'far fa-heart') {
-                $(this).removeClass()
-                $(this).addClass('fas fa-heart')
-            } else {
-                $(this).removeClass()
-                $(this).addClass('far fa-heart')
-            }
-        })
+        @if (count($forum))
+            @php
+                $i = 1;
+            @endphp
+            @foreach ($forum as $item)
+                $("#post-like-{{$i}}").click(function(e) {
+                    if ($(this).attr('class') == 'far fa-heart') {
+                        $(this).removeClass()
+                        $(this).addClass('fas fa-heart')
+                    } else {
+                        $(this).removeClass()
+                        $(this).addClass('far fa-heart')
+                    }
+                })
+                @php
+                    $i++;
+                @endphp
+            @endforeach
+        @endif
+        // e.preventDefault();
+        // $.ajax({
+        //     url: "{{ route('forum.liked') }}",
+        //     datatype: "json",
+
+        // })
         // Change text area into ckeditor
         var konten = document.getElementById('tulisan')
         ClassicEditor

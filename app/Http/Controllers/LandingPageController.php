@@ -9,6 +9,7 @@ use App\Models\CourseClass;
 use App\Models\ForumTopic;
 use App\Models\Forum;
 use App\Models\Socmed;
+use App\Models\Faq;
 use Auth;
 
 class LandingPageController extends Controller
@@ -40,7 +41,8 @@ class LandingPageController extends Controller
     }
     public function faq()
     {
-        return view('index.page.faq');
+        $faqs = Faq::all();
+        return view('index.page.faq',compact('faqs'));
     }
     public function forum(Request $request)
     {

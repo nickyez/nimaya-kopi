@@ -39,6 +39,7 @@ Route::group(['prefix'=>'member'],function(){
     Route::post('/logout',[Member\MemberController::class,'logout']);
 });
 Route::post('/forum/create',[ForumController::class,'store']);
+Route::post('/forum/like',[ForumController::class,'forumIsLiked'])->name('forum.liked');
 Route::post('/forum/edit/{id}',[ForumController::class,'update']);
 Route::delete('/forum/{id}',[ForumController::class,'destroy']);
 Route::group(['middleware'=>'member','prefix'=>'course'],function(){
