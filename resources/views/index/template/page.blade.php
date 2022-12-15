@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="{{ asset('img/logo.png') }}" class="w-25"></a>
+                <a class="navbar-brand" href="{{url('/')}}"><img src="{{ asset('img/logo.png') }}" class="w-25"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">

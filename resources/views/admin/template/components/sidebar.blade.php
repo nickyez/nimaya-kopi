@@ -1,8 +1,8 @@
 <ul class="navbar-nav bg-app-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <img src="{{ asset('img/logo.png') }}" alt="" class="bg-light p-2 rounded img-fluid">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/admin')}}">
+        <img src="{{ asset('img/logo2.png') }}" alt="" class="p-2 img-fluid">
     </a>
 
     <!-- Divider -->

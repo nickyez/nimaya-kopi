@@ -57,14 +57,14 @@
                 @foreach ($forum as $item)
                     <div class="row mt-3 mx-3">
                         <div class="card w-100">
-                            <div class="card-body" data-toggle="modal" data-target="{{ '#forum-pop' . $i }}">
+                            <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <img src="{{ asset('storage' . '/' . $item->user->photo) }}" alt=""
                                         width="96px" height="96px" class="rounded-circle mr-4">
                                     <div class="d-flex flex-column flex-fill">
                                         <span><strong>{{ $item->user->name }}</strong> /
                                             {{ $item->forumTopic->nama_topik }}</span>
-                                        <h4 class="card-title">{{ $item->judul }}</h4>
+                                        <h4 class="card-title" data-toggle="modal" data-target="{{ '#forum-pop' . $i }}">{{ $item->judul }}</h4>
                                         <div>
                                             <i id='post-like-{{ $i }}'
                                                 class="far fa-heart"></i>{{-- <i class="fas fa-heart"></i> --}}
