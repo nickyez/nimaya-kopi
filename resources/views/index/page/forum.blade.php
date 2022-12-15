@@ -294,7 +294,7 @@
                 console.error(error);
             });
         @if (count($forum))
-            @for ($k = 1; $k < count($forum); $k++)
+            @for ($k = 1; $k <= count($forum); $k++)
                 var konten = document.getElementById('tulisan-{{ $k }}')
                 ClassicEditor
                     .create(konten, {
